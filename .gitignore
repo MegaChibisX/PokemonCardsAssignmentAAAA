@@ -5,8 +5,8 @@
 PokemonCards/[Ll]ibrary/
 PokemonCards/[Tt]emp/
 PokemonCards/[Oo]bj/
-PokemonCards/[Bb]uild/
-PokemonCards/[Bb]uilds/
+#PokemonCards/[Bb]uild/
+#PokemonCards/[Bb]uilds/
 PokemonCards/[Ll]ogs/
 PokemonCards/[Uu]ser[Ss]ettings/
 
