@@ -176,6 +176,14 @@ public class SM_DeckBuilder : MonoBehaviour
             }
         }
 
+        // Animation Button
+        RectTransform trAnim = Instantiate(cardPrefab);
+        trAnim.SetParent(deckCorner);
+        trAnim.localScale = cardPrefab.localScale;
+
+        btAnim = trAnim.GetComponent<Button>();
+        btAnim.gameObject.SetActive(false);
+
         // Updates visuals
         UpdateDeckVisuals();
 
@@ -201,21 +209,18 @@ public class SM_DeckBuilder : MonoBehaviour
             UpdateDeckVisuals();
         });
 
-        if (GameManager.savedDecks.ContainsKey(decks.options[decks.value].text))
+        if (GameManager.savedDecks == null)
+            GameManager.savedDecks = new Dictionary<string, string[]>();
+        if (GameManager.savedDecks.Count == 0)
+            GameManager.savedDecks.Add("Empty Deck", new string[] { });
+
+        if (decks.value >= 0 && decks.value < decks.options.Count && GameManager.savedDecks.ContainsKey(decks.options[decks.value].text))
         {
             GameManager.deckDeck.cards = GameManager.savedDecks[decks.options[decks.value].text].ToList();
         }
         if (GameManager.savedDecks.ContainsKey(instance.deckName.text))
             GameManager.savedDecks.Remove(instance.deckName.text);
         GameManager.savedDecks.Add(instance.deckName.text, GameManager.deckDeck.cards.ToArray());
-
-        // Animation Button
-        RectTransform trAnim = Instantiate(cardPrefab);
-        trAnim.SetParent(deckCorner);
-        trAnim.localScale = cardPrefab.localScale;
-
-        btAnim = trAnim.GetComponent<Button>();
-        btAnim.gameObject.SetActive(false);
     }
     public void Update()
     {

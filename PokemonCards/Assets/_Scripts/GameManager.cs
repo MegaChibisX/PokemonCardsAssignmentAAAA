@@ -135,7 +135,6 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Prewww");
         UnityWebRequest www = UnityWebRequestTexture.GetTexture(jsonToken.SelectToken("images").SelectToken("small").Value<string>());
-        www.timeout = 1;
         yield return www.SendWebRequest();
 
         Texture t = DownloadHandlerTexture.GetContent(www);
